@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.linxz.streamlet"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            /*buildConfigField "String", "API_SERVER_URL", "\"http://erp-api.mingpin365.cn/\""
+            buildConfigField "String", "IMAGE_SERVER_URL", "\"http://erp.mingpin365.cn\""*/
+            buildConfigField "String", "API_SERVER_URL", "\"http://lianjiu-api.iwms.xin/\""
+            buildConfigField "String", "IMAGE_SERVER_URL", "\"http://lianjiu.iwms.xin/\""
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_SERVER_URL", "\"http://lianjiu-api.iwms.xin/\""
+            buildConfigField "String", "IMAGE_SERVER_URL", "\"http://lianjiu.iwms.xin/\""
+        }
+        //注：见下面的configurations注释
+        publishNonDefault true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compile 'com.githang:status-bar-compat:0.3'
+    compile 'com.jakewharton:butterknife:7.0.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'io.reactivex:rxandroid:1.1.0'
+
+    compile files('libs/xUtils-2.6.14.jar')
+    compile files('libs/zxing.jar')
+    compile files('libs/glide-3.6.1.jar')
+}
